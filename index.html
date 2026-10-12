@@ -540,7 +540,7 @@
   var yes = $("yes"), no = $("no"), hint = $("hint");
   var fled = 0, placeholder = null, px = -999, py = -999, lastFlee = 0;
 
-  var noTexts = ["Подумаю", "Не так быстро", "Мимо", "Кумилек, ну…", "Может, всё-таки да?", "Кнопка устала"];
+  var noTexts = ["Не так быстро", "Мимо", "Кумилек, ну…", "Может, всё-таки да?", "Кумилек, койсай", "Это же Эльбрус", "ГЕШТАЛЬТ"];
   var hints = [
     "",
     "Кнопка немного застенчивая.",
@@ -571,7 +571,8 @@
     }
 
     fled += 1;
-    no.textContent = noTexts[Math.min(fled, noTexts.length - 1)];
+    var pool = noTexts.filter(function (t) { return t !== no.textContent; });
+    no.textContent = pool[Math.floor(Math.random() * pool.length)];
     hint.textContent = hints[Math.min(fled, hints.length - 1)];
     yes.style.setProperty("--yes-size", Math.min(1.05 + fled * 0.16, 1.75).toFixed(2) + "rem");
 
